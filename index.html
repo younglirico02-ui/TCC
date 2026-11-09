@@ -1,30 +1,45 @@
 <!DOCTYPE html><html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TCC Fácil</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1d4ed8">
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:#f1f5f9;color:#0f172a}
-.app{max-width:720px;margin:auto;padding:16px}h1{color:#1d4ed8;margin:0 0 4px}.sub{color:#475569;margin:0 0 16px}
-.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 1px 3px #0002}
-label{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}input,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font:inherit}
-button{width:100%;padding:14px;border:0;border-radius:10px;background:#1d4ed8;color:#fff;font-size:16px;font-weight:700;margin-top:12px}button.g{background:#16a34a}button.s{background:#64748b;font-size:14px}button:disabled{opacity:.6}
-h3{margin:0 0 8px;font-size:15px}#out{display:none}.hint{font-size:13px;color:#475569}
-#print{display:none}
-@media print{body{background:#fff}.app{display:none}#print{display:block;font-family:"Times New Roman",serif;font-size:12pt;line-height:1.5;color:#000}
-@page{size:A4;margin:3cm 2cm 2cm 3cm}.cover{text-align:center;page-break-after:always;min-height:24cm;display:flex;flex-direction:column;justify-content:space-between}
-.pg{page-break-after:always}#print h2{font-size:13pt;text-transform:uppercase;margin:0 0 12pt}#print p{text-align:justify;text-indent:1.25cm;margin:0 0 6pt}
-.sec{page-break-before:always}.sec:first-of-type{page-break-before:auto}.t{font-size:16pt;font-weight:bold;text-transform:uppercase}}
-</style></head><body><div class="app">
-<h1>TCC Fácil</h1><p class="sub">Escreve o tema e gera o trabalho em PDF.</p>
-<div class="card"><label>Tema do trabalho *</label><input id="tema" placeholder="Ex.: A importância da educação financeira">
+:root{--b:#2563eb;--d:#1e40af;--bg:#f4f6fb;--m:#64748b;--l:#e2e8f0}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:#0f172a}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb 60%,#7c3aed);color:#fff;padding:30px 20px 60px}header h1{margin:0;font-size:28px}header p{margin:6px 0 0;opacity:.9}
+.app{max-width:720px;margin:-38px auto 0;padding:0 14px 40px}
+.card{background:#fff;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 4px 18px #1e3a8a14}
+.card h3{margin:0 0 10px;font-size:16px;display:flex;align-items:center;gap:8px}
+.n{background:var(--b);color:#fff;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 6px;color:#334155}
+input,textarea{width:100%;padding:12px 14px;border:1.5px solid var(--l);border-radius:12px;font:inherit;background:#f8fafc}
+input:focus,textarea:focus{outline:0;border-color:var(--b);background:#fff;box-shadow:0 0 0 3px #2563eb22}
+textarea{resize:none;line-height:1.55;overflow:hidden}#tema{font-size:17px;font-weight:600}
+details{margin-top:14px;border-top:1px solid var(--l);padding-top:12px}summary{cursor:pointer;font-weight:600;color:var(--d);font-size:14px}
+.seg{display:flex;gap:6px}.seg label{flex:1;margin:0}.seg input{display:none}.seg span{display:block;text-align:center;padding:11px 4px;border:1.5px solid var(--l);border-radius:12px;font-size:14px;font-weight:600;color:#334155}.seg input:checked+span{background:var(--b);color:#fff;border-color:var(--b)}
+.row{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:14px}.row input{width:20px;height:20px;accent-color:var(--b)}
+button{width:100%;padding:15px;border:0;border-radius:14px;font-size:16px;font-weight:700;margin-top:10px;color:#fff;background:linear-gradient(135deg,#2563eb,#7c3aed);box-shadow:0 6px 16px #2563eb44}
+button.s{background:#fff;color:var(--d);border:1.5px solid var(--l);box-shadow:none;font-size:14px;padding:12px}button.g{background:linear-gradient(135deg,#16a34a,#059669);box-shadow:0 6px 16px #16a34a44}button:disabled{opacity:.55}
+.pbw{height:8px;background:var(--l);border-radius:8px;overflow:hidden;margin-top:14px}#pb{height:100%;width:0;background:linear-gradient(90deg,#2563eb,#7c3aed);transition:width .4s}
+.hint{font-size:13px;color:var(--m);margin:8px 0 0;line-height:1.5}.bar{position:sticky;bottom:0;padding:8px 0 4px;background:linear-gradient(transparent,var(--bg) 35%)}
+#res p{font-size:14px;line-height:1.65}#out,#res,#print{display:none}
+@media print{body{background:#fff}header,.app{display:none}#print{display:block;font-family:"Times New Roman",serif;font-size:12pt;line-height:1.5;color:#000}
+@page{size:A4;margin:3cm 2cm 2cm 3cm;@bottom-center{content:counter(page);font-size:10pt}}@page:first{@bottom-center{content:""}}
+.cover{text-align:center;page-break-after:always;min-height:24cm;display:flex;flex-direction:column;justify-content:space-between}
+.pg{page-break-after:always}.ref{page-break-before:always}#print h2{font-size:13pt;text-transform:uppercase;margin:18pt 0 8pt;break-after:avoid}
+#print p{text-align:justify;text-indent:1.25cm;margin:0 0 6pt}.t{font-size:16pt;font-weight:bold;text-transform:uppercase}}
+</style></head><body><header><h1>📚 TCC Fácil</h1><p>Pesquisa, escreve e gera o teu trabalho em PDF</p></header>
+<div class="app">
+<div class="card"><h3><span class="n">1</span>Qual é o tema?</h3>
+<textarea id="tema" rows="2" placeholder="Ex.: A importância da educação financeira"></textarea>
 <label>Curso / Classe</label><input id="curso" placeholder="Ex.: 12.ª Classe, Informática">
-<label>Escola / Instituição</label><input id="esc"><label>Nome do aluno</label><input id="alu"><label>Professor / Orientador</label><input id="prof">
-<label>Cidade</label><input id="cid"><label>Ano</label><input id="ano" type="number">
-<label>Extensão</label><select id="ext" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font:inherit"><option value="2 parágrafos">Curta</option><option value="3 a 4 parágrafos" selected>Média</option><option value="5 a 6 parágrafos">Longa</option></select>
-<label>Chave da API Anthropic (para escrever com IA)</label><input id="key" type="password" placeholder="sk-ant-..." autocomplete="off">
-<p class="hint">A chave fica guardada só neste telemóvel. Cria-a em console.anthropic.com.</p>
-<button id="bai" onclick="genAI()">Gerar com IA</button><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="ws" checked style="width:auto"> Pesquisar na web e usar fontes reais</label>
-<button class="s" onclick="buscar()">Só pesquisar o tema</button><button class="s" onclick="gen()">Gerar modelo sem IA (offline)</button><p id="st" class="hint"></p></div>
-<div id="res" class="card" style="display:none"></div>
-<div id="out"><p class="hint">Revê e edita cada parte. Acrescenta dados reais e as tuas fontes antes de gerar o PDF.</p><div id="ed"></div>
-<button class="g" onclick="pdf()">Gerar PDF</button><p class="hint">Na janela que abrir, escolhe “Guardar como PDF”.</p></div></div>
+<details><summary>Dados da capa (opcional)</summary><label>Escola / Instituição</label><input id="esc"><label>Nome do aluno</label><input id="alu"><label>Professor / Orientador</label><input id="prof"><label>Cidade</label><input id="cid"><label>Ano</label><input id="ano" type="number"></details></div>
+<div class="card"><h3><span class="n">2</span>Tamanho do trabalho</h3>
+<div class="seg"><label><input type="radio" name="ext" value="4 a 5 parágrafos"><span>Médio</span></label><label><input type="radio" name="ext" value="6 a 8 parágrafos" checked><span>Longo</span></label><label><input type="radio" name="ext" value="10 a 12 parágrafos"><span>Muito longo</span></label></div>
+<div class="row"><input type="checkbox" id="ws" checked><span>Pesquisar na web e usar fontes reais</span></div>
+<details id="kd"><summary>⚙️ Chave da API Anthropic</summary><label>Chave</label><input id="key" type="password" placeholder="sk-ant-..." autocomplete="off"><p class="hint">Fica guardada só neste telemóvel. Cria-a em console.anthropic.com.</p></details></div>
+<button id="bai" onclick="genAI()">✨ Gerar trabalho com IA</button>
+<button class="s" onclick="buscar()">🔎 Só pesquisar o tema</button><button class="s" onclick="gen()">Modelo sem IA (offline)</button>
+<div class="pbw"><div id="pb"></div></div><p id="st" class="hint"></p>
+<div id="res" class="card"></div>
+<div id="out"><p class="hint">Revê cada parte, edita à vontade e acrescenta dados reais antes de gerar o PDF.</p><div id="ed"></div>
+<div class="bar"><button class="g" onclick="pdf()">📄 Gerar PDF</button></div><p class="hint">Na janela que abrir, escolhe “Guardar como PDF”.</p></div></div>
 <div id="print"></div>
 <script>
 const $=i=>document.getElementById(i);let S=[];$('ano').value=new Date().getFullYear();
@@ -44,19 +59,37 @@ S=[
 ['Conclusão',`Concluído o estudo sobre "${t}", verifica-se que o tema é relevante e merece atenção. Os objetivos propostos foram alcançados, tendo-se compreendido os conceitos, a evolução, a importância e os desafios associados.\n\nRecomenda-se o aprofundamento do assunto e a sua divulgação, para que mais pessoas possam beneficiar deste conhecimento.`],
 ['Referências Bibliográficas',`SOBRENOME, Nome. Título da obra. Cidade: Editora, Ano.\n\nSOBRENOME, Nome. Título do artigo. Nome do site, Ano. Disponível em: endereço. Acesso em: data.`]];
 render()}
-function render(){$('ed').innerHTML='';S.forEach((s,i)=>{const d=document.createElement('div');d.className='card';const h=document.createElement('h3');h.textContent=(i+1)+'. '+s[0];const ta=document.createElement('textarea');ta.rows=9;ta.value=s[1];ta.oninput=()=>S[i][1]=ta.value;d.append(h,ta);$('ed').append(d)});
-$('out').style.display='block';$('out').scrollIntoView()}
-try{$('key').value=localStorage.getItem('k')||''}catch(e){}
-const T=[['Introdução','apresentar o tema, contextualizá-lo, indicar a importância e explicar como o trabalho está organizado'],['Objetivos','começar com a linha "Objetivo geral" seguida de uma frase, depois a linha "Objetivos específicos" seguida de 4 itens, cada um numa linha começada por "- "'],['Justificativa','explicar porque o tema foi escolhido e a sua relevância social e académica'],['Conceitos Fundamentais','definir o tema e os conceitos principais associados'],['Origem e Evolução','descrever como o tema surgiu e evoluiu, em termos gerais, sem datas ou factos de que não tenhas certeza'],['Importância','explicar a importância do tema para a sociedade e para a área de estudo'],['Vantagens e Desafios','"Vantagens" e "Desafios" como duas partes, cada uma com itens em linhas começadas por "- ", e uma frase final'],['Metodologia','descrever uma pesquisa bibliográfica; não inventes inquéritos, entrevistas nem dados'],['Conclusão','retomar os objetivos, resumir as ideias principais e dar uma recomendação final'],['Referências Bibliográficas','']];
-const SYS='És um assistente que ajuda estudantes a escrever trabalhos escolares (TCC) em português. Usa texto corrido, linguagem formal e clara adequada ao nível do aluno, sem markdown (sem #, ** ou tabelas). Nunca inventes citações, estatísticas, autores ou obras; se não tens certeza de um dado concreto, escreve em termos gerais. Responde apenas com o texto da secção, sem título.';
+function fit(t){t.style.height='auto';t.style.height=t.scrollHeight+4+'px'}
+function render(){$('ed').innerHTML='';S.forEach((s,i)=>{const d=document.createElement('div');d.className='card';const h=document.createElement('h3');h.innerHTML='<span class="n">'+(i+1)+'</span>';h.append(s[0]);const ta=document.createElement('textarea');ta.value=s[1];ta.oninput=()=>{S[i][1]=ta.value;fit(ta)};d.append(h,ta);$('ed').append(d)});
+$('out').style.display='block';document.querySelectorAll('#ed textarea').forEach(fit);$('out').scrollIntoView()}
+try{$('key').value=localStorage.getItem('k')||''}catch(e){}if(!$('key').value)$('kd').open=true;
+const T=[
+['Resumo','um resumo geral do trabalho (tema, objetivo, método e principais conclusões)','1 parágrafo de cerca de 150 palavras'],
+['Introdução','contextualizar o tema, apresentar o problema, a sua importância atual, os objetivos e a organização do trabalho'],
+['Objetivos','a linha "Objetivo geral" seguida de um parágrafo, depois a linha "Objetivos específicos" seguida de 5 itens, cada um numa linha começada por "- "','extensão curta, até 150 palavras'],
+['Justificativa','explicar as razões académicas, sociais e pessoais da escolha do tema e a sua relevância'],
+['Problema de Pesquisa','formular o problema central em forma de pergunta, explicar o contexto e apresentar 2 ou 3 hipóteses'],
+['Conceitos Fundamentais','definir o tema e os conceitos-chave, com diferentes perspetivas e autores apenas quando os conheças com certeza'],
+['Origem e Evolução','descrever por fases como o tema surgiu e evoluiu, apenas com factos de que tenhas certeza'],
+['Características e Aspetos Principais','explicar as principais características, componentes, tipos ou classificações do tema'],
+['Importância e Impactos','analisar os impactos sociais, económicos, educativos e culturais do tema, com exemplos concretos'],
+['Aplicações e Exemplos Práticos','apresentar situações reais ou exemplos práticos que mostrem o tema em ação'],
+['Vantagens e Desafios','duas partes, "Vantagens" e "Desafios", explicadas em parágrafos desenvolvidos, e uma parte final com possíveis soluções'],
+['Perspetivas Futuras','discutir tendências, oportunidades e o que se espera do tema nos próximos anos'],
+['Metodologia','descrever a pesquisa bibliográfica e documental, o tipo de pesquisa e os critérios de escolha das fontes; não inventes inquéritos nem dados'],
+['Análise e Discussão','relacionar e discutir criticamente as ideias apresentadas, comparando perspetivas'],
+['Conclusão','retomar os objetivos, sintetizar os resultados, responder ao problema, indicar limitações e recomendações'],
+['Referências Bibliográficas','']];
+const SYS='És um assistente que ajuda estudantes a escrever trabalhos escolares (TCC) em português. Escreve de forma completa e aprofundada, em parágrafos longos e bem desenvolvidos, com explicações, exemplos concretos e ligação entre as ideias, sem resumir nem usar frases genéricas. Usa texto corrido, linguagem formal e clara adequada ao nível do aluno, sem markdown (sem #, ** ou tabelas). Nunca inventes citações, estatísticas, autores ou obras; se não tens certeza de um dado concreto, escreve em termos gerais. Não repitas conteúdo que pertença a outras secções. Responde apenas com o texto da secção, sem título.';
 const M='claude-haiku-5-5';let R=null;
-async function call(b,k){const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify(b)});
+async function call(b,k,n=0){const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify(b)});
+if((r.status==429||r.status==529)&&n<3){await new Promise(x=>setTimeout(x,8000*(n+1)));return call(b,k,n+1)}
 if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(r.status==401?'Chave inválida.':(e.error&&e.error.message)||('Erro '+r.status))}
 return r.json()}
 const tx=d=>d.content.filter(b=>b.type=='text').map(b=>b.text).join('').trim();
-const ask=async(u,k)=>tx(await call({model:M,max_tokens:1500,system:SYS,messages:[{role:'user',content:u}]},k));
-async function pesq(t,k){const d=await call({model:M,max_tokens:2000,tools:[{type:'web_search_20250305',name:'web_search',max_uses:5}],system:'Pesquisa na web e responde em português.',messages:[{role:'user',content:`Pesquisa na web sobre o tema "${t}" para um trabalho escolar. Escreve notas factuais organizadas (definição, origem e história, importância, vantagens e desafios, dados relevantes), até 600 palavras, sem markdown.`}]},k);
-const f=[],seen={};const add=(u,n)=>{if(u&&!seen[u]&&f.length<8){seen[u]=1;f.push({url:u,title:(n||u).trim()})}};
+const ask=async(u,k)=>tx(await call({model:M,max_tokens:4000,system:SYS,messages:[{role:'user',content:u}]},k));
+async function pesq(t,k){const d=await call({model:M,max_tokens:4000,tools:[{type:'web_search_20250305',name:'web_search',max_uses:8}],system:'Pesquisa na web e responde em português.',messages:[{role:'user',content:`Pesquisa na web sobre o tema "${t}" para um trabalho escolar. Escreve notas factuais organizadas (definição, origem e história, importância, vantagens e desafios, dados relevantes), até 1200 palavras, com muitos detalhes, exemplos e dados, sem markdown.`}]},k);
+const f=[],seen={};const add=(u,n)=>{if(u&&!seen[u]&&f.length<12){seen[u]=1;f.push({url:u,title:(n||u).trim()})}};
 d.content.forEach(b=>{if(b.type=='text')(b.citations||[]).forEach(c=>add(c.url,c.title));else if(b.type=='web_search_tool_result'&&Array.isArray(b.content))b.content.forEach(x=>add(x.url,x.title))});
 return {notas:tx(d),fontes:f,t}}
 function showRes(r){const o=$('res');o.innerHTML='';o.style.display='block';const h=document.createElement('h3');h.textContent='Resultado da pesquisa';const p=document.createElement('p');p.style.whiteSpace='pre-wrap';p.textContent=r.notas;o.append(h,p);
@@ -65,18 +98,18 @@ function dados(){const t=$('tema').value.trim(),k=$('key').value.trim();if(!t){a
 async function buscar(){const d=dados();if(!d)return;$('st').textContent='A pesquisar na web...';
 try{R=await pesq(d.t,d.k);showRes(R);$('st').textContent=R.fontes.length?'Encontrei '+R.fontes.length+' fontes.':'Não encontrei fontes.';$('res').scrollIntoView()}catch(e){$('st').textContent='Erro: '+e.message}}
 async function genAI(){const d=dados();if(!d)return;const{t,k}=d;
-const c=$('curso').value.trim()||'não indicado',L=$('ext').value,b=$('bai');b.disabled=true;S=[];let aviso='';
+const c=$('curso').value.trim()||'não indicado',L=document.querySelector('[name=ext]:checked').value,b=$('bai'),pb=$('pb');b.disabled=true;let aviso='';pb.style.width='3%';
 try{if($('ws').checked&&!(R&&R.t===t)){$('st').textContent='A pesquisar na web...';try{R=await pesq(t,k);showRes(R)}catch(e){R=null;aviso=' (sem pesquisa: '+e.message+')'}}
-const U=$('ws').checked&&R&&R.t===t?R:null;
-for(let i=0;i<T.length;i++){const [n,g]=T[i];$('st').textContent='A escrever '+(i+1)+'/'+T.length+': '+n+'...';
-if(!g){if(U&&U.fontes.length){const dt=new Date().toLocaleDateString('pt-PT');S.push([n,U.fontes.map(f=>`${f.title}. Disponível em: ${f.url}. Acesso em: ${dt}.`).join('\n\n')])}
-else S.push([n,await ask(`Tema do trabalho: ${t}\nCurso/classe: ${c}\nEscreve 3 a 5 referências bibliográficas no formato ABNT apenas se tiveres plena certeza de que existem; caso contrário, dá só o modelo "SOBRENOME, Nome. Título. Cidade: Editora, Ano." para o aluno preencher. Termina com a linha: "Confirma todas as referências antes de entregar."`,k)]);continue}
-S.push([n,await ask(`Tema do trabalho: ${t}\nCurso/classe: ${c}\nSecção a escrever: ${n}\nO que incluir: ${g}\nExtensão: cerca de ${L}.\nEstrutura do trabalho: ${T.map(x=>x[0]).join(', ')}.${U?'\n\nNotas de pesquisa (baseia-te nelas; não acrescentes factos que não estejam nelas nem que não conheças com certeza):\n'+U.notas:''}`,k)])}
-$('st').textContent='Pronto. Revê o texto antes de gerar o PDF.'+aviso;render()}
-catch(e){$('st').textContent='Erro: '+e.message;if(S.length)render()}b.disabled=false}
+const U=$('ws').checked&&R&&R.t===t?R:null,N=T.length,out=[];let nx=0,dn=0;pb.style.width='10%';
+const work=async()=>{while(nx<N){const i=nx++,[n,g,x]=T[i];let txt;
+if(!g){const dt=new Date().toLocaleDateString('pt-PT');txt=U&&U.fontes.length?U.fontes.map(f=>`${f.title}. Disponível em: ${f.url}. Acesso em: ${dt}.`).join('\n\n'):await ask(`Tema do trabalho: ${t}\nCurso/classe: ${c}\nEscreve 3 a 5 referências bibliográficas no formato ABNT apenas se tiveres plena certeza de que existem; caso contrário, dá só o modelo "SOBRENOME, Nome. Título. Cidade: Editora, Ano." para o aluno preencher. Termina com a linha: "Confirma todas as referências antes de entregar."`,k)}
+else txt=await ask(`Tema do trabalho: ${t}\nCurso/classe: ${c}\nSecção a escrever: ${n}\nO que incluir: ${g}\nExtensão: ${x||('cerca de '+L+', cada parágrafo com 5 a 8 linhas')}.\nEstrutura do trabalho (as outras secções são escritas à parte): ${T.map(y=>y[0]).join(', ')}.${U?'\n\nNotas de pesquisa (baseia-te nelas; não acrescentes factos que não estejam nelas nem que não conheças com certeza):\n'+U.notas:''}`,k);
+out[i]=[n,txt];dn++;$('st').textContent='A escrever o trabalho... '+dn+'/'+N;pb.style.width=(10+dn/N*90)+'%'}};
+await Promise.all([work(),work(),work()]);S=out;$('st').textContent='Pronto! Revê e edita o texto antes de gerar o PDF.'+aviso;render()}
+catch(e){$('st').textContent='Erro: '+e.message;pb.style.width='0'}b.disabled=false}
 function pdf(){const v=i=>esc($(i).value.trim());
 let h=`<div class="cover"><div><b>${v('esc')}</b><br>${v('curso')}</div><div class="t">${v('tema')}</div><div>${v('alu')?'Autor: '+v('alu'):''}<br>${v('prof')?'Professor/Orientador: '+v('prof'):''}<br><br>${v('cid')}, ${v('ano')}</div></div>`;
 h+=`<div class="pg"><h2>Índice</h2>${S.map((s,i)=>`<p style="text-indent:0">${i+1}. ${esc(s[0])}</p>`).join('')}</div>`;
-S.forEach((s,i)=>{h+=`<div class="sec"><h2>${i+1}. ${esc(s[0])}</h2>${esc(s[1]).split(/\n\n+/).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('')}</div>`});
+S.forEach((s,i)=>{h+=`<div class="sec${i==S.length-1?' ref':''}"><h2>${i+1}. ${esc(s[0])}</h2>${esc(s[1]).split(/\n\n+/).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('')}</div>`});
 $('print').innerHTML=h;document.title=($('tema').value.trim()||'TCC').slice(0,60);setTimeout(()=>window.print(),200)}
 </script></body></html>
