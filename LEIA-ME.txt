@@ -1,0 +1,9 @@
+TCC FÁCIL - como gerar o APK
+
+1) Crie um repositório no GitHub e envie TODOS estes ficheiros para a raiz (index.html, manifest.json, sw.js, icon-192.png, icon-512.png).
+2) Settings > Pages > Branch: main / (root) > Save.
+3) Abra o link https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/ para testar.
+4) Vá a pwabuilder.com, cole o link, clique Start > Package for stores > Android > Generate e descarregue o APK.
+5) Instale o APK no telemóvel. Na app, cole a chave da API Anthropic (console.anthropic.com) para escrever com IA.
+
+Sem chave, o botão "Gerar modelo sem IA" funciona offline.
